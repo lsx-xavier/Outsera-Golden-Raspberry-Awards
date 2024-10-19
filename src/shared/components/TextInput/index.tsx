@@ -8,10 +8,11 @@ export function TextInput({
   errorMessage,
   icon,
   iconSide,
+  className,
   ...props
 }: TextInputProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className={`flex flex-col gap-2 ${className}`}>
       <div
         className={textInputWrapperStyles({
           error: !!errorMessage,
