@@ -1,11 +1,13 @@
 import * as Select from "@radix-ui/react-select";
-import React from "react";
+import React, { useCallback } from "react";
 import { MdOutlineArrowDownward, MdOutlineArrowUpward } from "react-icons/md";
 import { OptionsView } from "./OptionsView";
 import { Trigger } from "./Trigger";
 import { SelectionProps } from "./types/Selection";
 
 export function Selection({ trigger, options, ...props }: SelectionProps) {
+  const handleReset = useCallback(() => props.onValueChange?.(""), [props]);
+
   return (
     <Select.Root {...props}>
       <Trigger {...trigger} />
@@ -21,7 +23,7 @@ export function Selection({ trigger, options, ...props }: SelectionProps) {
             <MdOutlineArrowUpward />
           </Select.ScrollUpButton>
 
-          <OptionsView {...options} />
+          <OptionsView {...options} handleReset={handleReset} />
 
           <Select.ScrollDownButton>
             <MdOutlineArrowDownward />
