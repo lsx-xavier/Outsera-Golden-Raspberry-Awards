@@ -1,0 +1,64 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "vitest-globals/env": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "plugin:vitest-globals/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
+  "globals": {
+    "React": true,
+    "JSX": true
+  },
+  "rules": {
+    "react/require-default-props": "off",
+    "react/button-has-type": "off",
+    "react/jsx-props-no-spreading": "off",
+    "prettier/prettier": "error",
+    "react/jsx-filename-extension": [0],
+    "react/react-in-jsx-scope": "off",
+    "import/extensions": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/display-name": "warn",
+    "react/no-unstable-nested-components": "off",
+    "react/prop-types": "off",
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": "off",
+    "no-useless-constructor": "off",
+    "no-empty-function": "off",
+    "no-empty-constructor": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "import/no-unresolved": "error",
+    "import/no-extraneous-dependencies": "off",
+    "import/named": "off",
+    "react/no-unused-prop-types": "off",
+    "react/jsx-no-bind": "off",
+    "react/function-component-definition": "off"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+        "project": "path/to/folder"
+      }
+    }
+  }
+}
