@@ -1,6 +1,6 @@
 export type OptionItemDto = {
   text: string;
-  value: string;
+  value: string | boolean | undefined;
 };
 export type OptionItemBySectionProps = {
   textSection?: string;
