@@ -13,7 +13,7 @@ export function ProducersMinMaxIntervalWin() {
     { id: "followingYear", value: "Following year" },
   ];
 
-  const { average } = useGetProducersMinMaxIntervalWin();
+  const { average, isLoading } = useGetProducersMinMaxIntervalWin();
 
   const rowsMax = useMemo(
     () =>
@@ -53,13 +53,23 @@ export function ProducersMinMaxIntervalWin() {
       <div className="flex flex-col gap-1">
         <Legend text="Maximum" />
 
-        <Table columns={columns} rows={rowsMax} />
+        <Table
+          columns={columns}
+          rows={rowsMax}
+          isLoading={isLoading}
+          rowsLoading={1}
+        />
       </div>
 
       <div className="flex flex-col gap-1 mt-2">
         <Legend text="Minimum" />
 
-        <Table columns={columns} rows={rowsMin} />
+        <Table
+          columns={columns}
+          rows={rowsMin}
+          isLoading={isLoading}
+          rowsLoading={1}
+        />
       </div>
     </Box>
   );

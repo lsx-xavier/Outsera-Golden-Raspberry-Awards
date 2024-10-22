@@ -13,6 +13,7 @@ export function Table({ columns, rows, isLoading, rowsLoading }: TableProps) {
           ))}
         </tr>
       </thead>
+
       <tbody>
         <RowContent
           isLoading={isLoading}

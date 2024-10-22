@@ -11,7 +11,7 @@ export function TopTreeStudiosWithWinners() {
     { id: "winCount", value: "Win Count" },
   ];
 
-  const { studios } = useGetTopTreeStudiosWithWinners({
+  const { studios, isLoading } = useGetTopTreeStudiosWithWinners({
     limit: 3,
     orderBy: "DESC",
     sortBy: "winCount",
@@ -33,7 +33,12 @@ export function TopTreeStudiosWithWinners() {
     <Box>
       <Subtitle text="Top Tree Studios With Winners" />
 
-      <Table columns={columns} rows={rows} />
+      <Table
+        columns={columns}
+        rows={rows}
+        isLoading={isLoading}
+        rowsLoading={3}
+      />
     </Box>
   );
 }

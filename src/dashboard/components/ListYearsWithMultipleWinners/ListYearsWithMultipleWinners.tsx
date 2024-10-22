@@ -11,7 +11,7 @@ export function ListYearsWithMultipleWinners() {
     { id: "winCount", value: "Win Count" },
   ];
 
-  const { years } = useGetYearsWithMoreThanOneWinner();
+  const { years, isLoading } = useGetYearsWithMoreThanOneWinner();
 
   const rows = useMemo(
     () =>
@@ -29,7 +29,12 @@ export function ListYearsWithMultipleWinners() {
     <Box>
       <Subtitle text="List Years With Multiple Winners" />
 
-      <Table columns={columns} rows={rows} />
+      <Table
+        columns={columns}
+        rows={rows}
+        isLoading={isLoading}
+        rowsLoading={3}
+      />
     </Box>
   );
 }

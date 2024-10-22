@@ -6,7 +6,7 @@ import { TextInput } from "@/shared/components/TextInput";
 import { Subtitle } from "@/shared/components/Titles";
 import { randomId } from "@/shared/utils/randomId";
 import { useMemo, useState } from "react";
-import { MdOutlineSearch } from "react-icons/md";
+import { MdOutlineBlock, MdOutlineSearch } from "react-icons/md";
 
 export function ListMovieByYear() {
   const [searchYear, setSearchYear] = useState<string>("");
@@ -17,7 +17,7 @@ export function ListMovieByYear() {
     { id: "title", value: "Title" },
   ];
 
-  const { movie, searchMovie } = useGetListMovieByYear({
+  const { movie, searchMovie, isLoading } = useGetListMovieByYear({
     year: searchYear,
   });
 
@@ -39,6 +39,8 @@ export function ListMovieByYear() {
       <Subtitle text="List Movies By Year" />
 
       <div className="flex flex-col gap-2">
+        <p className="text-sm text-gray-500">You need to search for a year</p>
+
         <div className="flex flex-row gap-2 items-center">
           <TextInput
             className="flex-1"
@@ -56,7 +58,19 @@ export function ListMovieByYear() {
           </Button>
         </div>
 
-        <Table columns={columns} rows={rows} />
+        <Table
+          columns={columns}
+          rows={rows}
+          isLoading={isLoading}
+          rowsLoading={3}
+        />
+
+        {rows.length === 0 && !isLoading && (
+          <div className="flex flex-col gap-2 justify-center items-center w-full mt-3">
+            <MdOutlineBlock />
+            <p>There are no results</p>
+          </div>
+        )}
       </div>
     </Box>
   );
