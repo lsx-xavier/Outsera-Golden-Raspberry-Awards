@@ -1,8 +1,19 @@
 import { rowsTdStyles } from "./styles/Rows";
 import { RowsProps } from "./types/Rows";
 
-type RowTdProps = Pick<RowsProps[0]["columnsValues"][0], "value">;
+type RowTdProps = {
+  isLoading?: boolean;
+  row?: RowsProps[0]["columnsValues"][0]["value"];
+};
 
-export function Row({ value }: RowTdProps) {
-  return <td className={rowsTdStyles()}>{value}</td>;
+export function Row({ row, isLoading }: RowTdProps) {
+  return (
+    <td
+      className={rowsTdStyles({
+        isLoading,
+      })}
+    >
+      {isLoading ? null : row || ""}
+    </td>
+  );
 }

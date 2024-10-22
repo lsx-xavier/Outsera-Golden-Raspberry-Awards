@@ -1,10 +1,9 @@
 import { Columns } from "./Columns";
-import { Row } from "./Row";
-import { rowsTrStyles } from "./styles/Rows";
+import { RowContent } from "./RowContent";
 import { tableStyles } from "./styles/Table";
 import { TableProps } from "./types/Table";
 
-export function Table({ columns, rows }: TableProps) {
+export function Table({ columns, rows, isLoading, rowsLoading }: TableProps) {
   return (
     <table className={tableStyles()}>
       <thead className="bg-slate-50">
@@ -15,19 +14,12 @@ export function Table({ columns, rows }: TableProps) {
         </tr>
       </thead>
       <tbody>
-        {rows.map((row) => (
-          <tr key={row.id} className={rowsTrStyles()}>
-            {row.columnsValues.map((column) => {
-              const findItem = row.columnsValues.find(
-                (rowItem) => rowItem.id === column.id,
-              );
-
-              if (!findItem) return null;
-
-              return <Row key={findItem?.id} value={findItem.value} />;
-            })}
-          </tr>
-        ))}
+        <RowContent
+          isLoading={isLoading}
+          rowsLoading={rowsLoading}
+          columns={columns}
+          rows={rows}
+        />
       </tbody>
     </table>
   );

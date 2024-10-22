@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDebounce } from "react-use";
 import {
   MdOutlineFirstPage,
@@ -19,6 +19,7 @@ export function Pagination({
   currentPage: currentPageProp = 0,
   totalPages,
   onPageChange,
+  isLoading,
 }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(currentPageProp);
   const totalPagesParsed = totalPages || 1;
@@ -38,7 +39,7 @@ export function Pagination({
     (_, i) => i + 1,
   ).slice(from - 1, to);
 
-  if (totalPages < 2) return null;
+  if (totalPages === 1 && !isLoading) return null;
 
   return (
     <div className={paginationStyles()}>

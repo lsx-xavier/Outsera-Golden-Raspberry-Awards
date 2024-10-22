@@ -6,6 +6,7 @@ export function useGetMovies(req: GetMoviesServiceRequest) {
   const { data, isLoading } = useQuery({
     queryKey: getMoviesService.getCacheKey({ ...req }),
     queryFn: () => getMoviesService.execute(req),
+    staleTime: Infinity,
   });
 
   return {

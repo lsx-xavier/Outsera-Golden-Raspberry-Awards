@@ -87,7 +87,7 @@ export default function ListMovies() {
     },
   ];
 
-  const { data } = useGetMovies({
+  const { data, isLoading } = useGetMovies({
     rowsPerPage: 20,
     page,
     year: yearToFilter !== undefined ? Number(yearToFilter) : undefined,
@@ -112,7 +112,13 @@ export default function ListMovies() {
     <Box>
       <Subtitle text="List Movies By Year" />
 
-      <Table columns={columns} rows={rows} />
+      <Table
+        columns={columns}
+        rows={rows}
+        isLoading={isLoading}
+        rowsLoading={20}
+      />
+
       <Pagination
         onPageChange={setPage}
         totalPages={data?.pagination.totalPages || 1}
