@@ -1,4 +1,5 @@
 import * as Select from "@radix-ui/react-select";
+import { randomId } from "@/shared/utils/randomId";
 import Item from "./Item";
 import { OptionsViewProps } from "./types/OptionsView";
 import { itemStyles } from "./styles/Item";
@@ -11,7 +12,7 @@ export function OptionsView({ options, handleReset }: OptionsViewProps) {
       </button>
 
       {options.map((option) => (
-        <Item {...option} />
+        <Item key={randomId()} {...option} />
       ))}
     </Select.Viewport>
   );

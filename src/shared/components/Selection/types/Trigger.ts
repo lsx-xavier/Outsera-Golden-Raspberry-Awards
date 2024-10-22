@@ -1,4 +1,4 @@
 export type TriggerProps = {
   text: string;
-  icon?: string;
+  icon?: React.ReactNode;
 };

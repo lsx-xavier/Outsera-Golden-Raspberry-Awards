@@ -1,5 +1,6 @@
 import * as Select from "@radix-ui/react-select";
 import { MdOutlineCheck } from "react-icons/md";
+import { randomId } from "@/shared/utils/randomId";
 import { OptionItemBySectionProps, OptionItemDto } from "./types/OptionItem";
 import { itemStyles } from "./styles/Item";
 
@@ -30,12 +31,12 @@ export default function Item({
         </Select.Label>
         <div className="flex flex-col gap-2">
           {options.map((option) => (
-            <ContentChild {...option} />
+            <ContentChild key={randomId()} {...option} />
           ))}
         </div>
       </Select.Group>
     );
   }
 
-  return options.map((option) => <ContentChild {...option} />);
+  return options.map((option) => <ContentChild key={randomId()} {...option} />);
 }

@@ -1,19 +1,19 @@
-import { useRef, useState } from "react";
-import { useDebounce } from "react-use";
+import { useState } from "react";
 import {
   MdOutlineFirstPage,
   MdOutlineLastPage,
   MdOutlineNavigateBefore,
   MdOutlineNavigateNext,
 } from "react-icons/md";
+import { useDebounce } from "react-use";
 import { Button } from "../Button";
+import { getPaginationInterval } from "./helpers/getPaginationInterval";
 import {
   pageButtonDirectionsStyle,
   pageButtonNumberStyle,
   paginationStyles,
 } from "./styles/Pagination";
 import { PaginationProps } from "./types/Pagination";
-import { getPaginationInterval } from "./helpers/getPaginationInterval";
 
 export function Pagination({
   currentPage: currentPageProp = 0,
@@ -54,10 +54,12 @@ export function Pagination({
             onPageChange(1);
           }
         }}
+        data-testid="first-page"
       >
         <MdOutlineFirstPage />
       </Button>
       <Button
+        aria-disabled={currentPage === 1}
         className={pageButtonDirectionsStyle({
           disabled: currentPage === 1,
         })}
@@ -67,6 +69,7 @@ export function Pagination({
             onPageChange(currentPage - 1);
           }
         }}
+        data-testid="previous-page"
       >
         <MdOutlineNavigateBefore />
       </Button>
@@ -82,6 +85,7 @@ export function Pagination({
       ))}
 
       <Button
+        aria-disabled={currentPage === totalPagesParsed}
         className={pageButtonDirectionsStyle({
           disabled: currentPage === totalPagesParsed,
         })}
@@ -91,10 +95,12 @@ export function Pagination({
             onPageChange(currentPage + 1);
           }
         }}
+        data-testid="next-page"
       >
         <MdOutlineNavigateNext />
       </Button>
       <Button
+        aria-disabled={currentPage === totalPagesParsed}
         className={pageButtonDirectionsStyle({
           disabled: currentPage === totalPagesParsed,
         })}
@@ -104,6 +110,7 @@ export function Pagination({
             onPageChange(totalPagesParsed);
           }
         }}
+        data-testid="last-page"
       >
         <MdOutlineLastPage />
       </Button>
