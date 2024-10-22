@@ -1,7 +1,7 @@
 export const getPaginationInterval = (
   page: number,
   totalPages: number,
-  visiblePages: number = 9,
+  visiblePages: number = 10,
 ) => {
   let from = page;
   let to = page + visiblePages;

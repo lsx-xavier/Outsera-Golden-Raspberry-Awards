@@ -1,12 +1,18 @@
 import { Link, useLocation } from "react-router-dom";
 import { DashboardPage } from "@/dashboard/page/Dashboard";
+import { ListMoviesPage } from "@/ListMovies/page";
 import { sidebarLinkStyles, sidebarStyles } from "./styles/Sidebar";
+import { SidebarProps } from "./types/Sidebar";
 
-export function Sidebar() {
+export function Sidebar({ className }: SidebarProps) {
   const { pathname } = useLocation();
 
   return (
-    <div className={sidebarStyles()}>
+    <div
+      className={sidebarStyles({
+        className,
+      })}
+    >
       <Link
         className={sidebarLinkStyles({
           active: pathname === DashboardPage.path,
@@ -17,9 +23,9 @@ export function Sidebar() {
       </Link>
       <Link
         className={sidebarLinkStyles({
-          active: pathname === "/list",
+          active: pathname === ListMoviesPage.path,
         })}
-        to="/list"
+        to={ListMoviesPage.path}
       >
         List
       </Link>

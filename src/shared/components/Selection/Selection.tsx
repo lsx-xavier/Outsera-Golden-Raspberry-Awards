@@ -23,7 +23,7 @@ export function Selection({ trigger, options, ...props }: SelectionProps) {
             <MdOutlineArrowUpward />
           </Select.ScrollUpButton>
 
-          <OptionsView {...options} handleReset={handleReset} />
+          <OptionsView options={options} handleReset={handleReset} />
 
           <Select.ScrollDownButton>
             <MdOutlineArrowDownward />

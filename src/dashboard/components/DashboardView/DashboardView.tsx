@@ -12,19 +12,19 @@ export function DashboardView() {
       <Title text="DashboardView" />
 
       <div className="flex flex-row flex-wrap gap-x-2 gap-y-3">
-        <div className="w-[calc(50%-0.33rem)]">
+        <div className="w-full lg:w-[calc(50%-0.33rem)]">
           <ListYearsWithMultipleWinners />
         </div>
 
-        <div className="w-[calc(50%-0.33rem)]">
+        <div className="w-full lg:w-[calc(50%-0.33rem)]">
           <TopTreeStudiosWithWinners />
         </div>
 
-        <div className="w-[calc(50%-0.33rem)]">
+        <div className="w-full lg:w-[calc(50%-0.33rem)]">
           <ProducersMinMaxIntervalWin />
         </div>
 
-        <div className="w-[calc(50%-0.33rem)]">
+        <div className="w-full lg:w-[calc(50%-0.33rem)]">
           <ListMovieByYear />
         </div>
       </div>

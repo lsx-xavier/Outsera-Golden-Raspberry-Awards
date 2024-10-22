@@ -16,12 +16,12 @@ import { PaginationProps } from "./types/Pagination";
 import { getPaginationInterval } from "./helpers/getPaginationInterval";
 
 export function Pagination({
-  currentPage: currentPageProp = 1,
+  currentPage: currentPageProp = 0,
   totalPages,
   onPageChange,
 }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(currentPageProp);
-  const totalPagesParsed = totalPages - 1 || 1;
+  const totalPagesParsed = totalPages || 1;
 
   useDebounce(
     () => {

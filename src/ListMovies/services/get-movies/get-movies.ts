@@ -14,7 +14,7 @@ export const getMoviesService = new ApiService<
       `/movies`,
       {
         params: {
-          page: req.page,
+          page: req.page - 1,
           size: req.rowsPerPage,
           ...(req.winner && req.winner !== "unassigned"
             ? { winner: req.winner === "yes" }

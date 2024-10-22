@@ -12,6 +12,7 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { useDebounce } from "react-use";
 
 export default function ListMovies() {
+  const [page, setPage] = useState<number>(1);
   const [yearToFilterField, setYearToFilterField] = useState<string>("");
   const [yearToFilter, setYearToFilter] = useState<string | undefined>(
     undefined,
@@ -21,6 +22,7 @@ export default function ListMovies() {
 
   useDebounce(
     () => {
+      setPage(1);
       if (yearToFilterField === "") {
         setYearToFilter(undefined);
         return;
@@ -58,33 +60,33 @@ export default function ListMovies() {
           Winner?
           <Selection
             trigger={{ text: "Yes/No" }}
-            options={{
-              options: [
-                {
-                  options: [
-                    {
-                      text: "Yes",
-                      value: "yes",
-                    },
-                    {
-                      text: "No",
-                      value: "no",
-                    },
-                  ],
-                },
-              ],
-            }}
+            options={[
+              {
+                options: [
+                  {
+                    text: "Yes",
+                    value: "yes",
+                  },
+                  {
+                    text: "No",
+                    value: "no",
+                  },
+                ],
+              },
+            ]}
             value={isWinner}
             onValueChange={(
               selectedOption: GetMoviesServiceRequest["winner"],
-            ) => setIsWinner(selectedOption)}
+            ) => {
+              setPage(1);
+              setIsWinner(selectedOption);
+            }}
           />
         </div>
       ),
     },
   ];
 
-  const [page, setPage] = useState<number>(1);
   const { data } = useGetMovies({
     rowsPerPage: 20,
     page,
@@ -114,7 +116,7 @@ export default function ListMovies() {
       <Pagination
         onPageChange={setPage}
         totalPages={data?.pagination.totalPages || 1}
-        currentPage={data?.pagination.pageNumber || 1}
+        currentPage={page}
       />
     </Box>
   );
