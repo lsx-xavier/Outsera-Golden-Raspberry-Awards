@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render as defaultRender, RenderOptions } from "@testing-library/react";
 
 import {
@@ -13,6 +14,14 @@ export type CustomRenderOptions = {
   searchParams?: string;
 };
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
+
 export const renderInsideRouterProvider = (
   component: React.ReactNode,
   options?: CustomRenderOptions,
@@ -20,7 +29,12 @@ export const renderInsideRouterProvider = (
   const routes = [
     {
       path: "/",
-      element: <Outlet />,
+      element: (
+        <QueryClientProvider client={queryClient}>
+          <Outlet />
+        </QueryClientProvider>
+      ),
+
       children: [
         {
           path: "/",

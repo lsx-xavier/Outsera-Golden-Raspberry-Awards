@@ -53,6 +53,7 @@ export function ListMovieByYear() {
           <Button
             onClick={() => searchMovie()}
             className="py-3 px-3 bg-blue-600 text-white hover:bg-blue-700"
+            data-testid="search-button"
           >
             <MdOutlineSearch />
           </Button>
