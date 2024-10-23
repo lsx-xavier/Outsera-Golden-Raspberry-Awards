@@ -1,15 +1,11 @@
-import * as getMoviesService from "@/ListMovies/services/get-movies";
+import * as useGetMovies from "@/ListMovies/hooks/use-get-movies";
 import { customRender } from "@/test/utils";
 import { fireEvent, waitFor } from "@testing-library/react";
 import { act } from "react";
-
 import { ListMovies } from "./ListMovies";
-import { MOVIE_1, MOVIE_2 } from "./__MOCKS__/list-movies";
+import { MOVIE_1, MOVIE_2, MOVIE_3, MOVIE_4 } from "./__MOCKS__/list-movies";
 
-const getMoviesServiceSpyOn = vi.spyOn(
-  getMoviesService.getMoviesService,
-  "execute",
-);
+const useGetMoviesSpyOn = vi.spyOn(useGetMovies, "useGetMovies");
 
 vi.mock("react-use", (reactUse) => ({
   ...reactUse,
@@ -30,20 +26,133 @@ const setup = () => {
   };
 };
 
-beforeEach(() => {
-  getMoviesServiceSpyOn.mockReset();
+afterEach(() => {
+  useGetMoviesSpyOn.mockReset();
 });
 
 describe("ListMovies", () => {
-  it("should render correctly", () => {
-    getMoviesServiceSpyOn.mockResolvedValue({
-      movies: [MOVIE_1, MOVIE_2],
-      pagination: {
-        pageNumber: 1,
-        size: 10,
-        totalPages: 1,
-        totalElements: 0,
+  it("should show info on table when using both filters", async () => {
+    useGetMoviesSpyOn.mockReturnValue({
+      data: {
+        movies: [MOVIE_1, MOVIE_2, MOVIE_3, MOVIE_4],
+        pagination: {
+          pageNumber: 1,
+          size: 10,
+          totalPages: 1,
+          totalElements: 0,
+        },
       },
+      isLoading: false,
+    });
+    const { utils, searchYearInput, winnerSelectionTrigger } = setup();
+
+    await waitFor(() => {
+      expect(utils.getByText("100")).toBeInTheDocument();
+      expect(utils.getByText("Title 1")).toBeInTheDocument();
+      expect(utils.getByText("1982")).toBeInTheDocument();
+
+      expect(utils.getByText("200")).toBeInTheDocument();
+      expect(utils.getByText("Title 2")).toBeInTheDocument();
+      expect(utils.getByText("No")).toBeInTheDocument();
+
+      expect(utils.getByText("201")).toBeInTheDocument();
+      expect(utils.getByText("Title 3")).toBeInTheDocument();
+
+      expect(utils.getByText("202")).toBeInTheDocument();
+      expect(utils.getByText("Title 4")).toBeInTheDocument();
+
+      expect(utils.getAllByText("1983")).toHaveLength(3);
+      expect(utils.getAllByText("Yes")).toHaveLength(3);
+    });
+
+    fireEvent.click(winnerSelectionTrigger);
+    const winnerSelectionContent = utils.getByTestId("selection-content");
+    expect(winnerSelectionContent).toBeInTheDocument();
+    const yesOption = utils.getByTestId("yes");
+
+    useGetMoviesSpyOn.mockReturnValue({
+      data: {
+        movies: [MOVIE_3, MOVIE_4],
+        pagination: {
+          pageNumber: 1,
+          size: 10,
+          totalPages: 1,
+          totalElements: 0,
+        },
+      },
+      isLoading: false,
+    });
+
+    fireEvent.click(yesOption);
+
+    fireEvent.change(searchYearInput, { target: { value: "1983" } });
+    expect(searchYearInput).toHaveValue("1983");
+
+    await waitFor(() => {
+      expect(utils.queryByText("100")).not.toBeInTheDocument();
+      expect(utils.queryByText("Title 1")).not.toBeInTheDocument();
+      expect(utils.queryByText("1982")).not.toBeInTheDocument();
+      expect(utils.getAllByText("Yes")).toHaveLength(3);
+
+      expect(utils.queryByText("200")).not.toBeInTheDocument();
+      expect(utils.queryByText("Title 2")).not.toBeInTheDocument();
+      expect(utils.getAllByText("1983")).toHaveLength(2);
+      expect(utils.queryByText("No")).not.toBeInTheDocument();
+
+      expect(utils.getByText("201")).toBeInTheDocument();
+      expect(utils.getByText("Title 3")).toBeInTheDocument();
+
+      expect(utils.getByText("202")).toBeInTheDocument();
+      expect(utils.getByText("Title 4")).toBeInTheDocument();
+    });
+
+    useGetMoviesSpyOn.mockReturnValue({
+      data: {
+        movies: [],
+        pagination: {
+          pageNumber: 1,
+          size: 10,
+          totalPages: 1,
+          totalElements: 0,
+        },
+      },
+      isLoading: false,
+    });
+
+    fireEvent.change(searchYearInput, { target: { value: "2000" } });
+    expect(searchYearInput).toHaveValue("2000");
+
+    await waitFor(() => {
+      expect(utils.queryByText("100")).not.toBeInTheDocument();
+      expect(utils.queryByText("Title 1")).not.toBeInTheDocument();
+      expect(utils.queryByText("1982")).not.toBeInTheDocument();
+      expect(utils.queryAllByText("Yes")).toHaveLength(1);
+
+      expect(utils.queryByText("200")).not.toBeInTheDocument();
+      expect(utils.queryByText("Title 2")).not.toBeInTheDocument();
+      expect(utils.queryAllByText("1983")).toHaveLength(0);
+      expect(utils.queryByText("No")).not.toBeInTheDocument();
+
+      expect(utils.queryByText("201")).not.toBeInTheDocument();
+      expect(utils.queryByText("Title 3")).not.toBeInTheDocument();
+
+      expect(utils.queryByText("202")).not.toBeInTheDocument();
+      expect(utils.queryByText("Title 4")).not.toBeInTheDocument();
+    });
+  });
+
+  it("should render correctly", () => {
+    useGetMoviesSpyOn.mockReturnValue({
+      data: {
+        movies: [],
+        pagination: {
+          pageNumber: 1,
+          size: 10,
+          totalPages: 1,
+          totalElements: 0,
+        },
+      },
+      isLoading: false,
     });
     const { utils, searchYearInput, winnerSelectionTrigger } = setup();
 
@@ -68,14 +177,17 @@ describe("ListMovies", () => {
   });
 
   it("should show info on table when search by year", async () => {
-    getMoviesServiceSpyOn.mockResolvedValue({
-      movies: [MOVIE_1, MOVIE_2],
-      pagination: {
-        pageNumber: 1,
-        size: 10,
-        totalPages: 1,
-        totalElements: 0,
+    useGetMoviesSpyOn.mockReturnValue({
+      data: {
+        movies: [MOVIE_1, MOVIE_2],
+        pagination: {
+          pageNumber: 1,
+          size: 10,
+          totalPages: 1,
+          totalElements: 0,
+        },
       },
+      isLoading: false,
     });
     const { utils, searchYearInput } = setup();
 
@@ -91,14 +203,17 @@ describe("ListMovies", () => {
       expect(utils.getByText("No")).toBeInTheDocument();
     });
 
-    getMoviesServiceSpyOn.mockResolvedValue({
-      movies: [MOVIE_1],
-      pagination: {
-        pageNumber: 1,
-        size: 10,
-        totalPages: 1,
-        totalElements: 0,
+    useGetMoviesSpyOn.mockReturnValue({
+      data: {
+        movies: [MOVIE_1],
+        pagination: {
+          pageNumber: 1,
+          size: 10,
+          totalPages: 1,
+          totalElements: 0,
+        },
       },
+      isLoading: false,
     });
 
     fireEvent.change(searchYearInput, { target: { value: "1982" } });
@@ -118,14 +233,17 @@ describe("ListMovies", () => {
 
     fireEvent.change(searchYearInput, { target: { value: "1983" } });
 
-    getMoviesServiceSpyOn.mockResolvedValue({
-      movies: [MOVIE_2],
-      pagination: {
-        pageNumber: 1,
-        size: 10,
-        totalPages: 1,
-        totalElements: 0,
+    useGetMoviesSpyOn.mockReturnValue({
+      data: {
+        movies: [MOVIE_2],
+        pagination: {
+          pageNumber: 1,
+          size: 10,
+          totalPages: 1,
+          totalElements: 0,
+        },
       },
+      isLoading: false,
     });
 
     await waitFor(() => {
@@ -142,14 +260,17 @@ describe("ListMovies", () => {
   });
 
   it("should show info on table when select if is winner or not", async () => {
-    getMoviesServiceSpyOn.mockResolvedValue({
-      movies: [MOVIE_1, MOVIE_2],
-      pagination: {
-        pageNumber: 1,
-        size: 10,
-        totalPages: 1,
-        totalElements: 0,
+    useGetMoviesSpyOn.mockReturnValue({
+      data: {
+        movies: [MOVIE_1, MOVIE_2],
+        pagination: {
+          pageNumber: 1,
+          size: 10,
+          totalPages: 1,
+          totalElements: 0,
+        },
       },
+      isLoading: false,
     });
     const { utils, winnerSelectionTrigger } = setup();
 
@@ -171,23 +292,17 @@ describe("ListMovies", () => {
     expect(winnerSelectionContent).toBeInTheDocument();
 
     const yesOption = utils.getByTestId("yes");
-    getMoviesServiceSpyOn.mockResolvedValue({
-      movies: [
-        {
-          id: 100,
-          year: 1982,
-          title: "Title 1",
-          studios: [],
-          producers: [],
-          winner: true,
+    useGetMoviesSpyOn.mockReturnValue({
+      data: {
+        movies: [MOVIE_1],
+        pagination: {
+          pageNumber: 1,
+          size: 10,
+          totalPages: 1,
+          totalElements: 0,
         },
-      ],
-      pagination: {
-        pageNumber: 1,
-        size: 10,
-        totalPages: 2,
-        totalElements: 1,
       },
+      isLoading: false,
     });
     expect(yesOption).toBeInTheDocument();
     act(() => {
@@ -208,23 +323,17 @@ describe("ListMovies", () => {
 
     fireEvent.click(winnerSelectionTrigger);
     const noOption = utils.getByTestId("no");
-    getMoviesServiceSpyOn.mockResolvedValue({
-      movies: [
-        {
-          id: 200,
-          year: 1983,
-          title: "Title 2",
-          studios: [],
-          producers: [],
-          winner: false,
+    useGetMoviesSpyOn.mockReturnValue({
+      data: {
+        movies: [MOVIE_2],
+        pagination: {
+          pageNumber: 1,
+          size: 10,
+          totalPages: 1,
+          totalElements: 0,
         },
-      ],
-      pagination: {
-        pageNumber: 1,
-        size: 10,
-        totalPages: 2,
-        totalElements: 1,
       },
+      isLoading: false,
     });
     expect(noOption).toBeInTheDocument();
     act(() => {
