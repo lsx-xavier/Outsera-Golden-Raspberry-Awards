@@ -1,0 +1,42 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import * as BoxStories from './Box.stories';
+
+<Meta title="Components/Box" of={BoxStories} />
+
+# Box
+
+`Box` é um componente que pode ser utilizado para criar um container que tem uma sombra e bordar, para que seja possível adicionar um estilo de layout.
+
+## Exemplos
+<Story of={BoxStories.Default} />
+
+<br/><br/>
+### Descrição das Propriedades
+
+<div className="flex flex-row flex-wrap" style={{ gap: "1rem" }}>
+  <div>
+    #### Propriedades do Box
+
+    <table>
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>children</td>
+          <td>React.ReactNode</td>
+          <td>Conteúdo do container.</td>
+        </tr>
+        <tr>
+          <td>calssName</td>
+          <td>string | string[] (Opcional)</td>
+          <td>Passar estilos extras para o container.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

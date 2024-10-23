@@ -6,7 +6,7 @@ import { TableProps } from "./types/Table";
 export function Table({ columns, rows, isLoading, rowsLoading }: TableProps) {
   return (
     <table className={tableStyles()}>
-      <thead className="bg-slate-50">
+      <thead className="bg-slate-300">
         <tr>
           {columns.map((column) => (
             <Columns key={column.id} {...column} />

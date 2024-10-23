@@ -5,4 +5,4 @@ import { TriggerProps } from "./Trigger";
 export type SelectionProps = {
   trigger: TriggerProps;
   options: OptionsViewProps["options"];
-} & SelectProps;
+} & Pick<SelectProps, "value" | "onValueChange">;

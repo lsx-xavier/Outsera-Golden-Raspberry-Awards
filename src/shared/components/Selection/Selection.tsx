@@ -1,12 +1,14 @@
 import * as Select from "@radix-ui/react-select";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { MdOutlineArrowDownward, MdOutlineArrowUpward } from "react-icons/md";
 import { OptionsView } from "./OptionsView";
 import { Trigger } from "./Trigger";
 import { SelectionProps } from "./types/Selection";
 
 export function Selection({ trigger, options, ...props }: SelectionProps) {
-  const handleReset = useCallback(() => props.onValueChange?.(""), [props]);
+  const handleReset = useCallback(() => {
+    props.onValueChange?.("");
+  }, [props]);
 
   return (
     <Select.Root {...props}>

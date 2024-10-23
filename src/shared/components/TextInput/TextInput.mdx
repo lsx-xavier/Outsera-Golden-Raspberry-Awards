@@ -1,0 +1,69 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import * as TextInputStories from './TextInput.stories';
+
+<Meta title="Components/TextInput" of={TextInputStories} />
+
+# TextInput
+
+`TextInput` é um componente que pode ser utilizado para criar um container que tem uma sombra e bordar, para que seja possível adicionar um estilo de layout.
+
+## Exemplos
+##### Default
+<Story of={TextInputStories.Default} />
+##### Com icone
+<Story of={TextInputStories.WithIcon} />
+##### Com icone Right
+<Story of={TextInputStories.WithIconRight} />
+##### Com Mensagem de Erro
+<Story of={TextInputStories.WithErrorMessage} />
+
+<br/><br/>
+### Descrição das Propriedades
+
+<div className="flex flex-row flex-wrap" style={{ gap: "1rem" }}>
+  <div>
+    #### Propriedades do TextInput
+
+    <table>
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>placeholder</td>
+          <td>string</td>
+          <td>Texto que será exibido no placeholder.</td>
+        </tr>
+        <tr>
+          <td>value</td>
+          <td>string</td>
+          <td>Valor do TextInput.</td>
+        </tr>
+        <tr>
+          <td>onChange</td>
+          <td>(value: string) => void</td>
+          <td>Função que será chamada quando o valor do TextInput for alterado.</td>
+        </tr>
+        <tr>
+          <td>icon</td>
+          <td>React.ReactNode</td>
+          <td>Ícone do TextInput.</td>
+        </tr>
+        <tr>
+          <td>iconSide</td>
+          <td>"left" | "right"</td>
+          <td>Indica a posição do ícone em relação ao conteúdo do TextInput. (Default = "left")</td>
+        </tr>
+        <tr>
+          <td>errorMessage</td>
+          <td>string</td>
+          <td>Mensagem de erro.</td> 
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

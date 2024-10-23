@@ -7,7 +7,7 @@ export function TextInput({
   placeholder,
   errorMessage,
   icon,
-  iconSide,
+  iconSide = "left",
   className,
   ...props
 }: TextInputProps) {

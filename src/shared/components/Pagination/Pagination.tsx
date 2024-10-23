@@ -19,7 +19,6 @@ export function Pagination({
   currentPage: currentPageProp = 0,
   totalPages,
   onPageChange,
-  isLoading,
 }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(currentPageProp);
   const totalPagesParsed = totalPages || 1;
@@ -39,7 +38,7 @@ export function Pagination({
     (_, i) => i + 1,
   ).slice(from - 1, to);
 
-  if (totalPages === 1 && !isLoading) return null;
+  if (totalPages === 1) return null;
 
   return (
     <div className={paginationStyles()}>

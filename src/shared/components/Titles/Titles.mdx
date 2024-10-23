@@ -1,0 +1,50 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import * as TitlesStories from './Titles.stories';
+
+<Meta title="Components/Titles" of={TitlesStories} />
+
+# Titles
+
+Foi pensado em algumas tipografias de cabeçalhos e assim foi criado o componente para cada assim mantendo a mesma estrutura.
+
+## Exemplos
+<Story of={TitlesStories.TitleDefault} />
+<br/>
+
+##### Subtitle
+<Story of={TitlesStories.SubtitleDefault} />
+<br/>
+
+##### Legend
+<Story of={TitlesStories.LegendDefault} />
+
+<br/><br/>
+### Descrição das Propriedades
+
+<div className="flex flex-row flex-wrap" style={{ gap: "1rem" }}>
+  <div>
+    #### Propriedades do Titles
+
+    <table>
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>text</td>
+          <td>string</td>
+          <td>Conteúdo a ser exibido.</td>
+        </tr>
+        <tr>
+          <td>calssName</td>
+          <td>string | string[] (Opcional)</td>
+          <td>Passar estilos extras para o component.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

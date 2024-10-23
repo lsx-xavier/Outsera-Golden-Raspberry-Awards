@@ -1,7 +1,7 @@
 import { randomId } from "@/shared/utils/randomId";
 import { rowsTrStyles } from "./styles/Rows";
 import { Row } from "./Row";
-import { RowContentProps } from "./types/Rows";
+import { RowContentProps } from "./types/RowsContent";
 
 export function RowContent({
   columns,

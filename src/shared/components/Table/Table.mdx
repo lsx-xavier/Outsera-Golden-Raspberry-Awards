@@ -1,0 +1,76 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import * as Table from './Table.stories';
+
+<Meta title="Components/Table" of={Table} />
+
+# Table
+
+`Table` é um componente que pode ser utilizado para criar um container que tem uma sombra e bordar, para que seja possível adicionar um estilo de layout.
+
+## Exemplos
+<Story of={Table.Default} />
+<br/>
+##### Table com carregamento
+<Story of={Table.IsLoading} />
+
+<br/><br/>
+### Descrição das Propriedades
+
+<div className="flex flex-row flex-wrap" style={{ gap: "1rem" }}>
+  <div>
+    #### Propriedades do Table
+
+    <table>
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>columns</td>
+          <td>ColumnsProps</td>
+          <td>Lista de colunas.</td>
+        </tr>
+        <tr>
+          <td>rows</td>
+          <td>RowsProps</td>
+          <td>Lista de linhas.</td>
+        </tr>
+        <tr>
+          <td>isLoading</td>
+          <td>boolean (Opcional)</td>
+          <td>Indica se o container está carregando.</td>
+        </tr>
+        <tr>
+          <td>rowsLoading</td>
+          <td>number (Opcional)</td> 
+          <td>Lista de linhas para o loading (Default = 10).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    ##### Explicação dos types
+
+    ```ts
+      type ColumnsProps = {
+        id: string;
+        value: string | React.ReactNode;
+      }[];
+
+      type RowsProps = {
+        id: string;
+        columnsValues: ColumnsProps;
+      }[];
+
+      type TableProps = {
+        columns: ColumnsProps;
+        rows: RowsProps;
+        isLoading?: boolean;
+        rowsLoading?: number;
+      };
+    ```
+  </div>
+</div>

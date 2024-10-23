@@ -1,0 +1,78 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import * as SelectionStories from './Selection.stories';
+
+<Meta title="Components/Selection" of={SelectionStories} />
+
+# Selection
+
+`Selection` é um component de navegação para paginação.
+
+## Exemplos
+##### Default
+<Story of={SelectionStories.Default} />
+<br/>
+
+##### Com ícone
+<Story of={SelectionStories.WithTriggerIcon} />
+
+<br/><br/>
+### Descrição das Propriedades
+
+<div className="flex flex-row flex-wrap" style={{ gap: "1rem" }}>
+  <div>
+    #### Propriedades do Selection
+
+    <table>
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>trigger</td>
+          <td>TriggerProps</td>
+          <td>Um objeto com o texto e o ícone do trigger.</td>
+        </tr>
+        <tr>
+          <td>options</td>
+          <td>OptionItemBySectionProps[]</td>
+          <td>Um array de objetos com as opções do Selection.</td>
+        </tr>
+        <tr>
+          <td>value</td>
+          <td>string</td>
+          <td>Valor do Selection.</td>
+        </tr>
+        <tr>
+          <td>onValueChange</td>
+          <td>(value: string) => void</td>
+          <td>Função que será chamada quando o valor do Selection for alterado.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br/>
+    <br/>
+
+    ##### Explicação dos types
+
+    ```ts
+      type TriggerProps = {
+        text: string;
+        icon?: React.ReactNode;
+      };
+
+      type OptionItemBySectionProps = {
+        textSection?: string; // Serve para quando tiver que separar as opções em seções, bastando apenas passar para o primeiro option da seção.
+        options: OptionItemDto[];
+      };
+
+      type OptionItemDto = {
+        text: string;
+        value: string | boolean | undefined;
+      };
+    ```
+  </div>
+</div>

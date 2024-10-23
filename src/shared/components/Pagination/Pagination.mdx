@@ -1,0 +1,47 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import * as PaginationStories from './Pagination.stories';
+
+<Meta title="Components/Pagination" of={PaginationStories} />
+
+# Pagination
+
+`Pagination` é um component de navegação para paginação.
+
+## Exemplos
+<Story of={PaginationStories.Default} />
+
+<br/><br/>
+### Descrição das Propriedades
+
+<div className="flex flex-row flex-wrap" style={{ gap: "1rem" }}>
+  <div>
+    #### Propriedades do Pagination
+
+    <table>
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>currentPage</td>
+          <td>number</td>
+          <td>Pagina atual.</td>
+        </tr>
+        <tr>
+          <td>totalPages</td>
+          <td>number</td>
+          <td>Total de paginas, para que assim seja possível calcular o intervalo de paginação.</td>
+        </tr>
+        <tr>
+          <td>onPageChange</td>
+          <td>(page: number) => void</td>
+          <td>Função que será chamada quando a pagina for alterada.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

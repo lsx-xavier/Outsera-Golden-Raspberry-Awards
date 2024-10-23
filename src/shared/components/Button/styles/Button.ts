@@ -11,4 +11,5 @@ export const buttonStyle = cva([
   "transition-all",
   "ease-in-out",
   "duration-300",
+  "hover:opacity-50",
 ]);
