@@ -18,6 +18,7 @@ export function Selection({ trigger, options, ...props }: SelectionProps) {
           avoidCollisions
           position="popper"
           side="bottom"
+          data-testid="selection-content"
         >
           <Select.ScrollUpButton>
             <MdOutlineArrowUpward />

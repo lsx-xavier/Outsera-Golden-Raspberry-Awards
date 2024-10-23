@@ -1,4 +1,4 @@
-import ListMovies from "../ListMovies/ListMovies";
+import { ListMovies } from "../ListMovies/ListMovies";
 
 export default function ListMoviesView() {
   return (

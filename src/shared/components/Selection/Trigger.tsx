@@ -5,7 +5,7 @@ import { triggerStyles } from "./styles/Trigger";
 
 export function Trigger({ text, icon }: TriggerProps) {
   return (
-    <Select.Trigger className={triggerStyles()}>
+    <Select.Trigger data-testid="selection-trigger" className={triggerStyles()}>
       <Select.Value placeholder={text} />
       <Select.Icon>{icon || <MdOutlineArrowDownward />}</Select.Icon>
     </Select.Trigger>

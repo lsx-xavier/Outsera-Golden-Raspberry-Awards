@@ -7,11 +7,11 @@ import { Table } from "@/shared/components/Table";
 import { TextInput } from "@/shared/components/TextInput";
 import { Subtitle } from "@/shared/components/Titles";
 import { randomId } from "@/shared/utils/randomId";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { MdOutlineDateRange } from "react-icons/md";
 import { useDebounce } from "react-use";
 
-export default function ListMovies() {
+export function ListMovies() {
   const [page, setPage] = useState<number>(1);
   const [yearToFilterField, setYearToFilterField] = useState<string>("");
   const [yearToFilter, setYearToFilter] = useState<string | undefined>(
@@ -42,6 +42,7 @@ export default function ListMovies() {
         <div className="flex flex-col gap-1">
           Year
           <TextInput
+            data-testid="search-year"
             id="year"
             placeholder="Filter by Year"
             value={yearToFilterField || ""}

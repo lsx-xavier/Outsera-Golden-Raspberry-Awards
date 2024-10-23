@@ -4,15 +4,23 @@ import { randomId } from "@/shared/utils/randomId";
 import { OptionItemBySectionProps, OptionItemDto } from "./types/OptionItem";
 import { itemStyles } from "./styles/Item";
 
-const ContentChild = ({ text, value }: OptionItemDto) => (
-  <Select.Item className={itemStyles()} value={value}>
-    <Select.ItemText>{text}</Select.ItemText>
+const ContentChild = ({ text, value }: OptionItemDto) => {
+  if (!value) return null;
 
-    <Select.ItemIndicator>
-      <MdOutlineCheck className="!text-lime-950" />
-    </Select.ItemIndicator>
-  </Select.Item>
-);
+  return (
+    <Select.Item
+      data-testid={String(value)}
+      className={itemStyles()}
+      value={String(value)}
+    >
+      <Select.ItemText>{text}</Select.ItemText>
+
+      <Select.ItemIndicator>
+        <MdOutlineCheck className="!text-lime-950" />
+      </Select.ItemIndicator>
+    </Select.Item>
+  );
+};
 
 export default function Item({
   textSection,
