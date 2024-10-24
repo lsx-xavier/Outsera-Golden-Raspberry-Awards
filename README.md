@@ -1,7 +1,7 @@
 
 # Outsera - Golden Raspberry Awards
 
-This project showing some infos about the "bad" movies and producers ranking. It's just a preview about what that I can do.
+This project showing some infos about the "bad" movies and producers ranking. It's just a preview about what that will be.
 
 ## Tech Stack
 
