@@ -18,7 +18,6 @@ export default {
     msw: {
       handlers: [
         http.get(`${outseraApi.getUri()}/movies`, ({ request }) => {
-          console.log(request.url);
           let MOCK_MOVIES = [MOVIE_1, MOVIE_2, MOVIE_3, MOVIE_4];
           const urls = new URL(request.url);
 
