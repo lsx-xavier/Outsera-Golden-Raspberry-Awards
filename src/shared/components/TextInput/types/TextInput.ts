@@ -5,9 +5,10 @@ export type TextInputProps = Omit<
   "onChange"
 > & {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (value: string | number) => void;
   placeholder?: string;
   errorMessage?: string;
   icon?: React.ReactNode;
   iconSide?: "left" | "right";
+  mask?: (unmasked: string) => string | number;
 };
