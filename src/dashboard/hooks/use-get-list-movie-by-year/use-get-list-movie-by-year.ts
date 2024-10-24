@@ -3,12 +3,13 @@ import { GetListMovieByYearServiceRequest } from "@/dashboard/services/get-list-
 import { queryClient } from "@/shared/router/query-client";
 import { useMutation } from "@tanstack/react-query";
 
-export function useGetListMovieByYear(req: GetListMovieByYearServiceRequest) {
+export function useGetListMovieByYear() {
   const { data, mutate, status } = useMutation({
-    mutationFn: () => getListMovieByYearService.execute(req),
-    onSuccess: (dataSuccess) => {
+    mutationFn: (req: GetListMovieByYearServiceRequest) =>
+      getListMovieByYearService.execute(req),
+    onSuccess: (dataSuccess, variables) => {
       queryClient.setQueryData(
-        getListMovieByYearService.getCacheKey({ ...req }),
+        getListMovieByYearService.getCacheKey({ ...variables }),
         dataSuccess,
       );
     },

@@ -1,25 +1,26 @@
 import { useGetListMovieByYear } from "@/dashboard/hooks/use-get-list-movie-by-year";
 import { Box } from "@/shared/components/Box";
 import { Button } from "@/shared/components/Button";
+import { Form } from "@/shared/components/Form";
 import { Table } from "@/shared/components/Table";
-import { TextInput } from "@/shared/components/TextInput";
 import { Subtitle } from "@/shared/components/Titles";
 import { randomId } from "@/shared/utils/randomId";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { MdOutlineBlock, MdOutlineSearch } from "react-icons/md";
+import { z } from "zod";
+
+const ValidationSchema = z.object({
+  year: z.string().min(4, "Year has 4 number").max(4, "Year has 4 number"),
+});
 
 export function ListMovieByYear() {
-  const [searchYear, setSearchYear] = useState<string>("");
-
   const columns = [
     { id: "id", value: "Id" },
     { id: "year", value: "Year" },
     { id: "title", value: "Title" },
   ];
 
-  const { movie, searchMovie, isLoading } = useGetListMovieByYear({
-    year: searchYear,
-  });
+  const { movie, searchMovie, isLoading } = useGetListMovieByYear();
 
   const rows = useMemo(
     () =>
@@ -34,6 +35,10 @@ export function ListMovieByYear() {
     [movie],
   );
 
+  const handleSubmit = (values: any) => {
+    searchMovie(values);
+  };
+
   return (
     <Box>
       <Subtitle text="List Movies By Year" />
@@ -42,16 +47,16 @@ export function ListMovieByYear() {
         <p className="text-sm text-gray-500">You need to search for a year</p>
 
         <div className="flex flex-row gap-2 items-center">
-          <TextInput
-            className="flex-1"
-            placeholder="Search by year"
-            value={searchYear}
-            onChange={setSearchYear}
-            onKeyDown={(e) => e.code === "Enter" && searchMovie()}
-          />
+          <Form.Root validation={ValidationSchema} onSubmit={handleSubmit}>
+            <Form.TextField
+              name="year"
+              className="flex-1"
+              placeholder="Search by year"
+            />
+          </Form.Root>
 
           <Button
-            onClick={() => searchMovie()}
+            type="submit"
             className="py-3 px-3 bg-blue-600 text-white hover:bg-blue-700"
             data-testid="search-button"
           >

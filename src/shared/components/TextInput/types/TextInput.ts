@@ -1,7 +1,7 @@
-import { HtmlHTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
 
 export type TextInputProps = Omit<
-  HtmlHTMLAttributes<HTMLInputElement>,
+  InputHTMLAttributes<HTMLInputElement>,
   "onChange"
 > & {
   value: string;
