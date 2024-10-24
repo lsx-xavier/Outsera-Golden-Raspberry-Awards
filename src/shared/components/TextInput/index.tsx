@@ -2,7 +2,7 @@ import { textInputStyles, textInputWrapperStyles } from "./styles/TextInput";
 import { TextInputProps } from "./types/TextInput";
 
 export function TextInput({
-  value,
+  value = "",
   onChange,
   placeholder,
   errorMessage,

@@ -9,6 +9,7 @@ export function Root<ValuesType extends FieldValues>({
   defaultValues,
   onSubmit: onSubmitProp,
   children,
+  className,
   ...props
 }: RootProps<ValuesType>) {
   const form = useForm<z.infer<typeof validation>>({
@@ -26,7 +27,7 @@ export function Root<ValuesType extends FieldValues>({
   return (
     <FormProvider {...form}>
       <form
-        className="w-full"
+        className={`w-full ${className}`}
         {...props}
         onSubmit={form.handleSubmit(onSubmit)}
       >

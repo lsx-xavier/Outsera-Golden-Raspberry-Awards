@@ -17,4 +17,5 @@ export type RootProps<ValuesType> = {
     getValues: ValuesType,
   ) => Promise<void> | void;
   children?: ((form: FormHandles) => React.ReactNode) | React.ReactNode;
+  className?: string | string[];
 };

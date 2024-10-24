@@ -1,0 +1,63 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import * as FormStories from './Form.stories';
+
+<Meta title="Components/Form" of={FormStories} />
+
+# Form
+
+`Form` é um component com varios componentes internos para facilitar a criação de formulários.
+
+## Exemplos
+<Story of={FormStories.Default} />
+
+<br/><br/>
+### Componentes internos
+
+`Root` é o container do formulário, que tem o onSumit do formulário.<br/>
+`TextField` é o field de texto do formulário.
+
+<br/>
+### Descrição das Propriedades
+
+<div className="flex flex-row flex-wrap" style={{ gap: "1rem" }}>
+  <div>
+    #### Propriedades do Form (Default atributes)
+
+    <table>
+      <thead>
+        <tr>
+          <th>Propriedade</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>validation</td>
+          <td>ZodType</td>
+          <td>Validação do formulário.</td>
+        </tr>
+        <tr>
+          <td>defaultValues</td>
+          <td>object</td>
+          <td>Valores padrões do formulário.</td>
+        </tr>
+        <tr>
+          <td>onSubmit</td>
+          <td>function</td>
+          <td>Função chamada quando o formulário é submetido.</td>
+        </tr>
+        <tr>
+          <td>children</td>
+          <td>ReactNode</td>
+          <td>Conteúdo do formulário.</td>
+        </tr>
+        <tr>
+          <td>calssName</td>
+          <td>string | string[] (Opcional)</td>
+          <td>Passar estilos extras para o container.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
