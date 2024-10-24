@@ -62,11 +62,11 @@ export function ListMovieByYear() {
         <Table
           columns={columns}
           rows={rows}
-          isLoading={isLoading}
+          isLoading={isLoading === "pending"}
           rowsLoading={3}
         />
 
-        {rows.length === 0 && !isLoading && (
+        {isLoading === "success" && rows.length === 0 && (
           <div className="flex flex-col gap-2 justify-center items-center w-full mt-3">
             <MdOutlineBlock />
             <p>There are no results</p>

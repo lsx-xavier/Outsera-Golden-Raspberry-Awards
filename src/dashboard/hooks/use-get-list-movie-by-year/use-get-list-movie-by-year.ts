@@ -16,7 +16,7 @@ export function useGetListMovieByYear(req: GetListMovieByYearServiceRequest) {
 
   return {
     movie: data?.movie,
-    isLoading: !(status === "success"),
+    isLoading: status,
     searchMovie: mutate,
   };
 }

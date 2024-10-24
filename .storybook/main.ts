@@ -21,7 +21,7 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    defaultName: "Outsera - Documentation"
+    defaultName: "Documentation"
   },
 };
 export default config;
