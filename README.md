@@ -14,13 +14,13 @@ This project showing some infos about the "bad" movies and producers ranking. It
 Clone the project
 
 ```bash
-  git clone https://github.com/lsx-xavier/Outsera---Golden-Raspberry-Awards.git
+  git clone https://github.com/lsx-xavier/Outsera-Golden-Raspberry-Awards.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd Outsera-Golden-Raspberry-Awards.git (or cd "name-given-to-project")	
 ```
 
 Install dependencies
