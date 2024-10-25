@@ -1,6 +1,6 @@
-import { DashboardPage } from "@/dashboard/page/Dashboard";
-import Layout from "@/Layout/Layout";
-import { ListMoviesPage } from "@/ListMovies/page";
+import { DashboardPage } from "@/modules/dashboard/page/Dashboard";
+import { Layout } from "@/shared/Layout";
+import { ListMoviesPage } from "@/modules/ListMovies/page";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import { queryClient } from "./query-client";

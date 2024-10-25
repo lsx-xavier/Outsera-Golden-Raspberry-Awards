@@ -35,3 +35,42 @@ Start the server
   npm run dev
 ```
 
+## Explanations about the project
+
+### Folders
+
+- **/src/modules/**: All the modules of the project
+-- **/src/modules/**/page/**: All the modules of the project
+- **/src/shared/**: All the shared components of the project
+
+### Modules
+
+#### ListMovies
+
+The module that shows the list of movies. You can search by year and filter by winner or not.
+
+#### Dashboard
+
+The module that shows the dashboard with some stats about the movies and producers.
+
+### Shared
+
+#### Components
+
+All the shared components of the project.
+
+#### Layout
+
+The layout of the project.
+
+#### Router
+
+The router of the project.
+
+#### Utils
+
+Some utils functions.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

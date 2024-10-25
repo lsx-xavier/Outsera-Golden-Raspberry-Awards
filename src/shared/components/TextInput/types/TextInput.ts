@@ -1,14 +1,16 @@
 import { InputHTMLAttributes } from "react";
 
+export type TextInputDto = string | number;
+
 export type TextInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   "onChange"
 > & {
-  value: string;
-  onChange: (value: string | number) => void;
+  value: TextInputDto;
+  onChange: (value: TextInputDto) => void;
   placeholder?: string;
   errorMessage?: string;
   icon?: React.ReactNode;
   iconSide?: "left" | "right";
-  mask?: (unmasked: string) => string | number;
+  mask?: (unmasked: string) => TextInputDto;
 };
