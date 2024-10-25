@@ -40,8 +40,19 @@ Start the server
 ### Folders
 
 - **/src/modules/**: All the modules of the project
-  - **/src/modules/**/page/**: All the modules of the project
+  - **/src/modules/MODULE_NAME/**: Folder of the specific module
+    - **/src/modules/MODULE_NAME/components/**: All the components of the module
+    - **/src/modules/MODULE_NAME/hooks/**: All the hooks of the module
+    - **/src/modules/MODULE_NAME/services/**: All the services of the module
+  - **/src/modules/MODULE_NAME/page/**: All the pages of the modules
 - **/src/shared/**: All the shared components of the project
+  - **/src/modules/components/**: All the components that are shared
+  - **/src/modules/core/**: All the core components that are shared
+  - **/src/modules/infra/**: All the infra components that are shared
+  - **/src/modules/Layout/**: All components of the layout and the main layout
+  - **/src/modules/router/**: All files related to the router (to navigate between pages)
+  - **/src/modules/utils/**: All the utils functions that are shared
+
 
 ### Modules
 
