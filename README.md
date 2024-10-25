@@ -40,7 +40,7 @@ Start the server
 ### Folders
 
 - **/src/modules/**: All the modules of the project
--- **/src/modules/**/page/**: All the modules of the project
+  - **/src/modules/**/page/**: All the modules of the project
 - **/src/shared/**: All the shared components of the project
 
 ### Modules
