@@ -19,7 +19,9 @@ export const getMoviesService = new ApiService<
           ...(req.winner && req.winner !== "unassigned"
             ? { winner: req.winner === "yes" }
             : {}),
-          ...(req.year !== undefined ? { year: req.year } : {}),
+          ...(req.year !== undefined || req.year !== 0
+            ? { year: req.year }
+            : {}),
         },
       },
     );

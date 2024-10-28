@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from "react";
 
-export type TextInputDto = string | number;
+export type TextInputDto = string | number | undefined;
 
 export type TextInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,

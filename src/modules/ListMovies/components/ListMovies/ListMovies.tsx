@@ -14,19 +14,15 @@ import { useDebounce } from "react-use";
 
 export function ListMovies() {
   const [page, setPage] = useState<number>(1);
-  const [yearToFilterField, setYearToFilterField] = useState<TextInputDto>("");
-  const [yearToFilter, setYearToFilter] = useState<TextInputDto>("");
+  const [yearToFilterField, setYearToFilterField] =
+    useState<TextInputDto>(undefined);
+  const [yearToFilter, setYearToFilter] = useState<TextInputDto>(undefined);
 
   const [isWinner, setIsWinner] = useState<GetMoviesServiceRequest["winner"]>();
 
   useDebounce(
     () => {
       setPage(1);
-      if (yearToFilterField === "") {
-        setYearToFilter("");
-        return;
-      }
-
       setYearToFilter(yearToFilterField);
     },
     500,
