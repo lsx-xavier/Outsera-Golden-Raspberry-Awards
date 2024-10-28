@@ -20,7 +20,7 @@ describe("ListMovieByYear", () => {
   it("should render correctly", () => {
     const { utils } = setup();
 
-    expect(utils.getByText("List Movies By Year")).toBeInTheDocument();
+    expect(utils.getByText("List movie winners by year")).toBeInTheDocument();
     expect(
       utils.getByText("You need to search for a year"),
     ).toBeInTheDocument();

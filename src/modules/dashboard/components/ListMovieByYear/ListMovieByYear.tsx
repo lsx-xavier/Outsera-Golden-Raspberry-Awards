@@ -58,7 +58,7 @@ export function ListMovieByYear() {
 
   return (
     <Box>
-      <Subtitle text="List Movies By Year" />
+      <Subtitle text="List movie winners by year" />
 
       <div className="flex flex-col gap-2">
         <p className="text-sm text-gray-500">You need to search for a year</p>

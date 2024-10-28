@@ -39,7 +39,7 @@ describe("ListYearsWithMultipleWinners", () => {
     const { utils } = setup();
 
     expect(
-      utils.getByText("List Years With Multiple Winners"),
+      utils.getByText("List years with multiple winners"),
     ).toBeInTheDocument();
     expect(utils.getByText("Year")).toBeInTheDocument();
     expect(utils.getByText("Win Count")).toBeInTheDocument();

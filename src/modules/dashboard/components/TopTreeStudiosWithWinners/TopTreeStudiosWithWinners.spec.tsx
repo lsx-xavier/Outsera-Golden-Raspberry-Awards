@@ -34,9 +34,7 @@ describe("TopTreeStudiosWithWinners", () => {
   it("should render correctly", () => {
     const { utils } = setup();
 
-    expect(
-      utils.getByText("Top Tree Studios With Winners"),
-    ).toBeInTheDocument();
+    expect(utils.getByText("Top 3 studios with winners")).toBeInTheDocument();
     expect(utils.getByText("Name")).toBeInTheDocument();
     expect(utils.getByText("Win Count")).toBeInTheDocument();
   });

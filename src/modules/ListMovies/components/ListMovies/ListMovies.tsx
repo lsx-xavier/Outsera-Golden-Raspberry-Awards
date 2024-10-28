@@ -110,7 +110,7 @@ export function ListMovies() {
 
   return (
     <Box>
-      <Subtitle text="List Movies By Year" />
+      <Subtitle text="List movies" />
 
       <Table
         columns={columns}

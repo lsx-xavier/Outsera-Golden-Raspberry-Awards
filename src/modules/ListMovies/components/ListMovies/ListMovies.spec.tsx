@@ -156,7 +156,7 @@ describe("ListMovies", () => {
     });
     const { utils, searchYearInput, winnerSelectionTrigger } = setup();
 
-    expect(utils.getByText("List Movies By Year")).toBeInTheDocument();
+    expect(utils.getByText("List movies")).toBeInTheDocument();
 
     expect(utils.getByText("Id")).toBeInTheDocument();
     expect(utils.getByText("Year")).toBeInTheDocument();

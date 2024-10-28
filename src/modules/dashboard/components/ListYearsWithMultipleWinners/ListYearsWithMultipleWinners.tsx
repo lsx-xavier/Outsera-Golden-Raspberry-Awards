@@ -27,7 +27,7 @@ export function ListYearsWithMultipleWinners() {
 
   return (
     <Box>
-      <Subtitle text="List Years With Multiple Winners" />
+      <Subtitle text="List years with multiple winners" />
 
       <Table
         columns={columns}

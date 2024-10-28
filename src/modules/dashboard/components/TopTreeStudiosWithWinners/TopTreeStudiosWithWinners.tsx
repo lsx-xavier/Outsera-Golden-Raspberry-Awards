@@ -31,7 +31,7 @@ export function TopTreeStudiosWithWinners() {
 
   return (
     <Box>
-      <Subtitle text="Top Tree Studios With Winners" />
+      <Subtitle text="Top 3 studios with winners" />
 
       <Table
         columns={columns}
